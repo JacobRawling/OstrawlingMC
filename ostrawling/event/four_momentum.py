@@ -37,6 +37,20 @@ class FourMomentum:
             self._pz = vec[0]*np.sinh(vec[1])
             e = vec[3]
             self._m = mag * np.sign(self.p()**2-vec[3]**2)
+
+        elif basis == 'p,theta,phi,m':
+            self._px = vec[0]*np.cos(vec[2])
+            self._py = vec[0]*np.sin(vec[2])
+            self._pz = vec[0]*np.sinh(vec[1])
+            self._m = vec[3]
+            
+        elif basis == 'p,theta,phi,e':
+            self._px = vec[0]*np.sin(vec[1])*np.cos(vec[2])
+            self._py = vec[0]*np.sin(vec[1])*np.sin(vec[2])
+            self._pz = vec[0]*np.cos(vec[1])
+            e = vec[3]
+            self._m = mag * np.sign(self.p()**2-vec[3]**2)
+
         else:
             raise ValueError(' Basis %s is not one of the supported options. It must be "xyzm", "xyze", "pTEtaPhiE", "pTEtaPhiE"'%(basis))
 

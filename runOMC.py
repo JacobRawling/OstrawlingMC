@@ -19,7 +19,7 @@ generator = ost.Generator(process=ost.processes.Dummy(event_info=event_info),
                       config=config,
                       )
 
-generator.generate_n_event(10000)
+generator.generate_n_event(50000)
 generator.save()
 
 
