@@ -4,6 +4,3 @@ python:
 # command to install dependencies
 $(shell export PYTHONPATH=$PYTHONPATH:$(pwd))
 script: python tests/run_all_unit_tests.py -v
-branches:
-  only:
-    - master
