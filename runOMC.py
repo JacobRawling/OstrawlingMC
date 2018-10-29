@@ -16,7 +16,7 @@ event_info = {
 config = {'output_file': 'out/test.csv'}
 generator = ost.Generator(process=ost.processes.Dummy(event_info=event_info),
                       saver='csv',
-                      config=None,
+                      config=config,
                       )
 
 generator.generate_n_event(10000)

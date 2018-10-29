@@ -70,8 +70,8 @@ class Generator:
         """
         @Brief calls the open event saver and feeds it one event at a time to save
         """
-        for e in self.events:   
-            self.saver.save_event(e)
+        for event_number, e in enumerate(self.events):   
+            self.saver.save_event(e, event_number)
 
 
 
