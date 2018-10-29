@@ -40,5 +40,20 @@ class TestGeneratorMethods(unittest.TestCase):
         with self.assertRaises(ValueError):
             foo = ost.Generator(process=None)
 
+    def test_generating_nevents(self):
+        with self.assertRaises(ValueError):
+            event_info = {
+                's': 2000.0,
+                'sqrt_s': np.sqrt(2000.0)
+            }
+            generator = ost.Generator(process=ost.Dummy(event_info=event_info))
+            generator.generate_n_event('a')
+
+class TestSaverClass(unittest.TestCase):
+    def test_undefined_saver(self):
+        with self.assertRaises(NotImplementedError):
+            ost.create_saver('foo.txt', '')
+        
+
 if __name__ == '__main__':
     unittest.main()
