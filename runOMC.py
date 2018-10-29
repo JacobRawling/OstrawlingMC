@@ -1,17 +1,19 @@
 import ostrawling as ost
 import logging 
-from ostrawling import Generator
-from ostrawling import processes 
+import numpy as np 
 
 
 # 
-generator = Generator(process=ost.processes.EEtoMuMu(),
+event_info = {
+    's': 2000.0,
+    'sqrt_s': np.sqrt(2000.0)
+}
+generator = ost.Generator(process=ost.processes.Dummy(event_info=event_info),
                       saver='csv',
                       config=None,
                       )
 
-generator.generate_n_event(100)
-
+generator.generate_n_event(10000)
 generator.save()
 
 
