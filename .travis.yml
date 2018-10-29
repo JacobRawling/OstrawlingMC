@@ -2,5 +2,8 @@ language: python
 python:
   - "3.6"
 # command to install dependencies
-$(shell export PYTHONPATH=$PYTHONPATH:$(pwd))
+env: PYTHONPATH=$PYTHONPATH:$TRAVIS_BUILD_DIR/tests:$TRAVIS_BUILD_DIR
 script: python tests/run_all_unit_tests.py -v
+branches:
+  only:
+    - master
