@@ -1,4 +1,4 @@
-from .four_momenta import FourMomentum
+from .four_momentum import FourMomentum
 
 class Particle:
     def __init__(self, pdg_id, momentum):

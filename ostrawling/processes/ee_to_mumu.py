@@ -9,8 +9,6 @@ class EEtoMuMu(Process):
         """
         ToDo: Create some sort of event outline that specifies outparticle masses? ????
         """
-
-
         pass
 
     def integrand(self, phase_space_point):
