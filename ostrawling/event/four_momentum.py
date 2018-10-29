@@ -1,21 +1,44 @@
 import numpy as np
 
 class FourMomentum:
-    def __init__(self, px,py,pz,m=None, e=None):
-        if m is not None and e is not None:
-            raise ValueError('Please set one of energy or mass when creating a four-momenta.' )
+    def __init__(self, vec, basis='x,y,z,m'):
+        self.set_basis(vec,basis)
 
-        self._px = px
-        self._py = py
-        self._pz = pz
+    def set_basis(self, vec, basis='x,y,z,m'):
+        """
+        @brief Set the four-momentum where vec is a four vector in the basis defined by
+        the string basis, e.g 'xyzm' corresponds to cartesian where the fourth
 
-        self.space_like = True
-        if m is None and e is not None:
+        @params 
+        vec: A list/tuple of four numbers
+        basis: a string defining the basis the four numbers are  based in
+        """
+        basis = basis.lower()
+        if basis == 'x,y,z,m':
+            self._px = vec[0]
+            self._py = vec[1]
+            self._pz = vec[2]
+            self._m = vec[3]
+        elif basis == 'x,y,z,e':
+            self._px = vec[0]
+            self._py = vec[1]
+            self._pz = vec[2]
+            e = vec[3]
             mag = np.abs(self.p()**2-e**2)
-            m = np.sqrt(mag)
-            self.space_like = (self.p()**2<e**2)
-
-        self._m = m
+            self._m = mag * np.sign(self.p()**2-e**2)
+        elif basis == 'pt,eta,phi,m':
+            self._px = vec[0]*np.cos(vec[2])
+            self._py = vec[0]*np.sin(vec[2])
+            self._pz = vec[0]*np.sinh(vec[1])
+            self._m = vec[3]
+        elif basis == 'pt,eta,phi,e':
+            self._px = vec[0]*np.cos(vec[2])
+            self._py = vec[0]*np.sin(vec[2])
+            self._pz = vec[0]*np.sinh(vec[1])
+            e = vec[3]
+            self._m = mag * np.sign(self.p()**2-vec[3]**2)
+        else:
+            raise ValueError(' Basis %s is not one of the supported options. It must be "xyzm", "xyze", "pTEtaPhiE", "pTEtaPhiE"'%(basis))
 
     def eta(self):
         return 0.5*np.log( (self.p()+self.pz())/(self.p()-self.pz())  )
@@ -52,11 +75,12 @@ class FourMomentum:
         """
         Define the result of self + b, where b is a four momenta
         """
-        assert(isinstance(b, FourMomentum), 'Addition between four momenta requires both classes to be a four momenta object.')
-        res = FourMomentum(px=self.px() + b.px(),
-                py=self.py() + b.py(),
-                pz=self.pz() + b.pz(),
-                e=self.e() + b.e(),
+        res = FourMomentum(
+                (self.px() + b.px(),
+                self.py() + b.py(),
+                self.pz() + b.pz(),
+                self.e() + b.e()),
+                'x,y,z,e'
             )
         return res
         
