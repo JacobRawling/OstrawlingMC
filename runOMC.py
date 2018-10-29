@@ -5,5 +5,5 @@ from ostrawling import processes
 
 
 generator = Generator()
-generator.set_process( processess.ee_to_mumu()  )
+processes.EEtoMuMu()  
 
