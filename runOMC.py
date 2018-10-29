@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+"""
+
+"""
+
 import ostrawling as ost
 import logging 
 import numpy as np 
