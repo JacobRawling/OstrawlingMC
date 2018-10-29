@@ -1,4 +1,5 @@
-import unittest 
+import unittest
+import logging 
 import ostrawling as ost
 import numpy as np 
 
@@ -38,7 +39,26 @@ class TestFourMomentumMethods(unittest.TestCase):
 class TestGeneratorMethods(unittest.TestCase):
     def test_init(self):
         with self.assertRaises(ValueError):
-            foo = ost.Generator(process=None)
+            foo = ost.Generator(process=None, config={'output_file': 'foo.csv'})
+
+    def test_generating_nevents(self):
+        with self.assertRaises(ValueError):
+            event_info = {
+                's': 2000.0,
+                'sqrt_s': np.sqrt(2000.0)
+            }
+            generator = ost.Generator(process=ost.Dummy(event_info=event_info),
+                                      config={'output_file': 'tests/foo.csv'}
+                                      )
+            generator.generate_n_event('a')
+
+class TestSaverClass(unittest.TestCase):
+    def test_undefined_saver(self):
+        with self.assertRaises(NotImplementedError):
+            ost.create_saver('foo.txt', '')
+        
 
 if __name__ == '__main__':
+    logger = logging.getLogger()
+    logger.disabled = True
     unittest.main()
