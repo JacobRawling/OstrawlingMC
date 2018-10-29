@@ -56,7 +56,7 @@ class Dummy(Process):
                 )
             )
         b = Particle(pdg_id=11, momentum=FourMomentum(
-                (p,phi_a,eta_a,m ),
+                (p,phi_b,eta_a,m ),
                 'pt,eta,phi,m'
                 )
             )
