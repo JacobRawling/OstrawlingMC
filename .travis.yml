@@ -2,6 +2,7 @@ language: python
 python:
   - "3.6"
 # command to install dependencies
+$(shell export PYTHONPATH=$PYTHONPATH:$(pwd))
 script: python tests/run_all_unit_tests.py
 branches:
   only:
