@@ -4,6 +4,16 @@ Authors: Jacob Rawling & Kiran Ostrolenk
 @Brief: Abstract base class for generic process for HEP MC event generator. 
 """
 
+def abstractmethod(method):
+    """
+    An @abstractmethod member fn decorator.
+    """
+    def default_abstract_method(*args, **kwargs):
+        raise NotImplementedError('call to abstract method ' 
+                                  + repr(method))
+    default_abstract_method.__name__ = method.__name__    
+    return default_abstract_method
+
 class Process:
     def __init__(self):
         pass
