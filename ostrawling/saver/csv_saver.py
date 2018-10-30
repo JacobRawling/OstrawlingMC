@@ -19,14 +19,8 @@ class CSVSaver(Saver):
 
         # Read particle by particle
         event_line = "%d, "%event_number
-        total = None
         for p in event.final_state_particles:
-            if total is None:
-                total = p.momentum
-            else:
-                total = total + p.momentum
             event_line += "%d, %.4g, %.4g, %.4g, %.4g,"%(p.pdg_id, p.momentum.pt,p.momentum.eta, p.momentum.phi, p.momentum.m)
-        event_line += "%d, %.4g, %.4g, %.4g, %.4g,"%(-1, total.pt,total.eta, total.phi, total.m)
 
         # remove the trailing comma
         event_line = event_line[:-1] + '\n'

@@ -7,6 +7,7 @@ from .saver import create_saver
 from .processes import Process
 import logging 
 from tqdm import tqdm 
+import numpy as np
 
 class Generator:
     def __init__(self, process, config, saver='csv'):
@@ -60,10 +61,11 @@ class Generator:
             events[-1].set_weight(integral)
 
         self.events = events
-        self.xsec = self.process.volume() * total_integral/n
+        self.xsec = self.process.volume() * total_integral/n * 1e10
+        self.xsec_error = self.xsec/np.sqrt(n)
 
         logging.info('Processed %d events.'%n)
-        logging.info(' x-section: %.5g'%self.xsec)
+        logging.info('x-section: %.5g +- %.5g pb '%(self.xsec, self.xsec_error))
         return self.xsec
 
     def save(self):
