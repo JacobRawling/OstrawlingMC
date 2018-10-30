@@ -18,9 +18,7 @@ class Dummy(Process):
         """
         ToDo:  code in general formula for 2>2 xsec and given energy Q_0 
         """
-        alpha_QED = 1./137.
-        prefactor = alpha_QED**2/self.s/16.0/np.sqrt(np.pi)/32.0
-        return prefactor * ( 1 + phase_space_point[0]**2.0 ) 
+        return 1.0
 
     def volume(self):
         """
