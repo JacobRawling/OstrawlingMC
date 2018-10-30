@@ -15,6 +15,7 @@ def abstractmethod(method):
     return default_abstract_method
 
 class Process:
+    @abstractmethod
     def __init__(self):
         pass
 

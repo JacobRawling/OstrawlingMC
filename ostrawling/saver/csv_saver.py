@@ -20,7 +20,7 @@ class CSVSaver(Saver):
         # Read particle by particle
         event_line = "%d, "%event_number
         for p in event.final_state_particles:
-            event_line += "%d, %.4g, %.4g, %.4g, %.4g,"%(p.pdg_id, p.momentum.px(),p.momentum.py(), p.momentum.pz(), p.momentum.m())
+            event_line += "%d, %.4g, %.4g, %.4g, %.4g,"%(p.pdg_id, p.momentum.pt,p.momentum.eta, p.momentum.phi, p.momentum.m)
 
         # remove the trailing comma
         event_line = event_line[:-1] + '\n'

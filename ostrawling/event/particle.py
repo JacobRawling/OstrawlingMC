@@ -5,13 +5,13 @@ class Particle:
         self.pdg_id = pdg_id
         self.momentum = momentum
         self.momentum.set_basis(
-                (momentum.px(),momentum.py(), momentum.pz(),
+                (momentum.px,momentum.py, momentum.pz,
                 Particle.get_mass(pdg_id)),
                 'x,y,z,m'
             ) 
 
     def mass(self):
-        return self.momentum.m()
+        return self.momentum.m
 
     @staticmethod
     def get_mass( pdg_id):

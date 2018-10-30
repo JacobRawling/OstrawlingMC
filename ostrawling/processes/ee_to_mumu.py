@@ -15,7 +15,7 @@ class EEtoMuMu(Process):
         """
         ToDo:  code in general formula for 2>2 xsec and given energy Q_0 
         """
-        pass
+        pass  
 
     def volume(self):
         """
@@ -37,7 +37,6 @@ class EEtoMuMu(Process):
         the true degrees of freedom of the integrand) and returns the four-mom
         enta of the particles of the process.  
 
-        ToDo: take cos(theta) and phi and output 2 particles four-momenta:
-            use eisten's eq + momenta cons. 
+        @params
         """
-        pass
+        pass 

@@ -1,0 +1,38 @@
+{
+    "process": {
+        "default": "dummy",
+        "short": "p",
+        "type": "str",
+        "help": "The process to be ran - here just a dummy process."
+    },
+    "output_file": {
+        "default": "out/ee_to_mumu.csv",
+        "short": "o",
+        "type": "str",
+        "help": "Full path to the output file which will be created (or overwritten) by the OMC."
+    },
+    "saver": {
+        "default": "csv",
+        "short": "S",
+        "type": "str",
+        "help": "The saving format to use. Supported options are: csv"
+    },
+    "sqrt_s": {
+        "default": 1000.0,
+        "short": "s",
+        "type": "float",
+        "help": "The center of mass energy of the collision, given in GeV"
+    },
+    "n_events": {
+        "default": 10000,
+        "short": "n",
+        "type": "int",
+        "help": "The number of events to generate."
+    },
+    "config": {
+        "default": "none",
+        "short": "c",
+        "type": "str",
+        "help": "The run card to generate events with."
+    }
+}
