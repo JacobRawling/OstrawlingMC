@@ -94,7 +94,10 @@ class FourMomentum:
     def phi(self):
         return np.arctan(self.py/self.px)
 
-
+    @property
+    def beta(self):
+        return self.p/self.e
+    
     def __add__(self, b):
         """
         Define the result of self + b, where b is a four momenta

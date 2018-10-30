@@ -14,7 +14,6 @@ def setup_parser(arguments, description):
     parser.register('type','list',list)
 
     for key, val in arguments.items():
-        print('Adding argument: ', key, val)
         parser.add_argument('-%s' % val['short'],
                             '--%s' % key,
                             type=val["type"],

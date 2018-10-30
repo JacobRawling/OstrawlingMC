@@ -52,6 +52,11 @@ class TestGeneratorMethods(unittest.TestCase):
                                       )
             generator.generate_n_event('a')
 
+class TestProcessMethods(unittest.TestCase):
+    def test_undefined_process(self):
+        with self.assertRaises(NotImplementedError):
+            ost.create_process('blahlafga')
+
 class TestSaverClass(unittest.TestCase):
     def test_undefined_saver(self):
         with self.assertRaises(NotImplementedError):

@@ -4,7 +4,7 @@ Authors: Jacob Rawling & Kiran Ostrolenk
 @Brief: General class to manage MC generation of events 
 """
 from .saver import create_saver
-from .processes import Process
+from .processes import Process, create_process
 import logging 
 from tqdm import tqdm 
 import numpy as np
@@ -26,9 +26,16 @@ class Generator:
         logging.basicConfig(format='[OMC|%(levelname)s] %(message)s', level=logging.DEBUG)
         logging.info('Welcome to OstrawlingMC - a simple educational Monte Carlo')
 
+        # Validate the inputs 
+        if not isinstance(process, Process) and not isinstance(process, str):
+            raise ValueError('process argument of a Generator must be of type Process or a string of one of the pre-defined processes')
+
+        # Look up the process if we've handed a string 
+        if isinstance(process, str):
+            config['s'] = config['sqrt_s']**2.0
+            process = create_process(process, config)
+
         self.process = process
-        if not isinstance(self.process, Process):
-            raise ValueError('process argument of a Generator must be of type Process')
 
         self.saver = create_saver(config['output_file'], saver)
         self.config = config
