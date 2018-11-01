@@ -58,13 +58,14 @@ class Generator:
         for i in tqdm(range(n)):
             # Sample a random event that obeys conservation laws
             ps_point = self.process.draw_phasespace_point() 
+            this_event = self.process.phase_space_to_event(ps_point)
 
             # Integrate the 
-            integral = self.process.integrand(ps_point) 
+            integral = self.process.integrand(this_event) 
             total_integral += integral 
 
             # Store all events
-            events.append(self.process.phase_space_to_event(ps_point) )
+            events.append(this_event)
             events[-1].set_weight(integral)
 
         self.events = events

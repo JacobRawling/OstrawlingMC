@@ -91,6 +91,10 @@ class FourMomentum:
         return np.arccos(self.pz/self.p)
 
     @property
+    def z(self):
+        return self.pz/self.p
+
+    @property
     def phi(self):
         return np.arctan(self.py/self.px)
 
