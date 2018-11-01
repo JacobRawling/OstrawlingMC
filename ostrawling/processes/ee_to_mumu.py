@@ -5,7 +5,7 @@ from .process import Process
 import logging 
 import numpy as np
 from ostrawling.event import Event, Particle, FourMomentum
-import ostrawling.constants
+import ostrawling.parameters 
 
 class EEtoMuMu(Process): 
     def __init__(self, event_info):
@@ -19,16 +19,14 @@ class EEtoMuMu(Process):
         """
         ToDo:  code in general formula for 2>2 xsec and given energy Q_0 
         """
+        p_i = event.initial_state_particles[0].momentum.p
+        p_f = event.final_state_particles[0].momentum.p
+        e = event.final_state_particles[0].momentum.e
+        m_i = event.initial_state_particles[0].momentum.m
+        m_f = event.final_state_particles[0].momentum.m
+        z = event.final_state_particles[0].momentum.z 
 
-        alpha = ostrawling.constants.alpha_em
-        p_i = event.initial_state_particles[0].p
-        p_f = event.final_state_particles[0].p
-        e = event.final_state_particles[0].e
-        m_i = event.initial_state_particles[0].m
-        m_f = event.final_state_particles[0].m
-        z = event.final_state_particles[0].z 
-
-        fac1 = alpha*alpha/(16*np.power(e,6))
+        fac1 = ostrawling.parameters.alpha_em*ostrawling.parameters.alpha_em/(16*np.power(e,6))
         fac2 = p_i/p_f
         fac3 = np.power(e,4) + p_i*p_i*p_f*p_f*z*z + e*e*(m_i*m_i + m_f*m_f)
 
