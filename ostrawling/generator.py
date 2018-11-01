@@ -61,7 +61,7 @@ class Generator:
             this_event = self.process.phase_space_to_event(ps_point)
 
             # Integrate the 
-            integral = self.process.integrand(ps_point) 
+            integral = self.process.integrand(this_event) 
             total_integral += integral 
 
             # Store all events
