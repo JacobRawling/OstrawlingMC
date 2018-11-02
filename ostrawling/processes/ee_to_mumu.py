@@ -5,7 +5,7 @@ from .process import Process
 import logging 
 import numpy as np
 from ostrawling.event import Event, Particle, FourMomentum
-import ostrawling.parameters 
+import ostrawling as ost
 
 class EEtoMuMu(Process): 
     def __init__(self, event_info):
@@ -21,12 +21,13 @@ class EEtoMuMu(Process):
         """
         p_i = event.initial_state_particles[0].momentum.p
         p_f = event.final_state_particles[0].momentum.p
+
         e = event.final_state_particles[0].momentum.e
         m_i = event.initial_state_particles[0].momentum.m
         m_f = event.final_state_particles[0].momentum.m
         z = event.final_state_particles[0].momentum.z 
 
-        fac1 = ostrawling.parameters.alpha_em*ostrawling.parameters.alpha_em/(16*np.power(e,6))
+        fac1 = ost.alpha_em*ost.alpha_em/(16*np.power(e,6))
         fac2 = p_i/p_f
         fac3 = np.power(e,4) + p_i*p_i*p_f*p_f*z*z + e*e*(m_i*m_i + m_f*m_f)
 
@@ -61,6 +62,7 @@ class EEtoMuMu(Process):
         phi_a, theta_a = phase_space_point[0], np.arccos(phase_space_point[1])
         m = Particle.get_mass(pdg_id=13)
         p = np.sqrt( 0.25*self.s - m*m ) 
+
         a = Particle(pdg_id=13, momentum=FourMomentum(
                 (p, theta_a, phi_a,m ),
                 'p,theta,phi,m'
