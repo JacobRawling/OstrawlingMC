@@ -37,7 +37,7 @@ class HepMCSaver(Saver):
         event_out += 'U GEV MM \n'
 
         # Vertex
-        event_out += 'V -1 0 0 0 0 0 2 4 0 \n'
+        event_out += 'V -1 0 0 0 0 0 %d %d 0 \n'%(len(event.initial_state_particles),len(event.final_state_particles))
 
         # Read particle by particle
 
