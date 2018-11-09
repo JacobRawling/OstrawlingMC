@@ -63,6 +63,10 @@ class FourMomentum:
         return np.sqrt(self.px**2 + self.py**2 + self.pz**2)
 
     @property
+    def p2(self):
+        return self.px**2 + self.py**2 + self.pz**2
+
+    @property
     def e(self):
         return np.sqrt(self.m**2 + self.p**2 )
 

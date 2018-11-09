@@ -6,16 +6,16 @@
         "help": "The process to be ran - here eetomumu."
     },
     "output_file": {
-        "default": "out/ee_to_mumu.csv",
+        "default": "out/ee_to_mumu.hepmc",
         "short": "o",
         "type": "str",
         "help": "Full path to the output file which will be created (or overwritten) by the OMC."
     },
     "saver": {
-        "default": "csv",
+        "default": "hepmc",
         "short": "S",
         "type": "str",
-        "help": "The saving format to use. Supported options are: csv"
+        "help": "The saving format to use. Supported options are: csv or hepmc"
     },
     "sqrt_s": {
         "default": 1000.0,
