@@ -14,8 +14,8 @@ class HepMCSaver(Saver):
         self.output_file = open(self.output_file, "w")
         
         # Start event listing
-        self.output_file.write('HepMC::Version 2.06.09 \n')
-        self.output_file.write('HepMC::IO_GenEvent-START_EVENT_LISTING \n')
+        self.output_file.write('\nHepMC::Version 2.06.09\n')
+        self.output_file.write('HepMC::IO_GenEvent-START_EVENT_LISTING\n')
 
     def close_file(self):
         # End event listing
@@ -28,16 +28,16 @@ class HepMCSaver(Saver):
         # WARNING: The following code only works for 2to2 fixed leading order calculations
 
         event_out = ''
-
+        hep_ev_num = event_number + 1
         # General GenEvent information
-        event_out += 'E %d -1 -1.0000000000000000e+00 -1.0000000000000000e+00 -1.0000000000000000e+00 0 0 1 10001 10002 0 1 %.17g \n'%(event_number, event.weight)
+        event_out += 'E %d -1 -1.0000000000000000e+00 -1.0000000000000000e+00 -1.0000000000000000e+00 0 0 1 10001 10002 0 1 %.17g\n'%(hep_ev_num, event.weight)
         # Weight names
-        event_out += 'N 1 "Default" \n'
+        event_out += 'N 1 "Default"\n'
         # Momentum and position units
-        event_out += 'U GEV MM \n'
+        event_out += 'U GEV MM\n'
 
         # Vertex
-        event_out += 'V -1 0 0 0 0 0 %d %d 0 \n'%(len(event.initial_state_particles),len(event.final_state_particles))
+        event_out += 'V -1 0 0 0 0 0 %d %d 0\n'%(len(event.initial_state_particles),len(event.final_state_particles))
 
         # Read particle by particle
 
@@ -52,7 +52,7 @@ class HepMCSaver(Saver):
             # Use calculated mass to allow for outputting off-shell particles
             calc_mass = np.sqrt(p.momentum.p2+p.momentum.e**2)
 
-            event_out += "P %d %d %.4g %.4g %.4g %.4g %.4g 0 0 -1 0 \n"%(barcode, p.pdg_id, p.momentum.px, p.momentum.py, p.momentum.pz, p.momentum.e, calc_mass)
+            event_out += "P %d %d %.4g %.4g %.4g %.4g %.4g 0 0 -1 0\n"%(barcode, p.pdg_id, p.momentum.px, p.momentum.py, p.momentum.pz, p.momentum.e, calc_mass)
             barcode += 1
 
         
@@ -60,7 +60,7 @@ class HepMCSaver(Saver):
 
             calc_mass = np.sqrt(p.momentum.p2+p.momentum.e**2)
 
-            event_out += "P %d %d %.4g %.4g %.4g %.4g %.4g 0 1 0 0 0 0 \n"%(barcode, p.pdg_id, p.momentum.px, p.momentum.py, p.momentum.pz, p.momentum.e, calc_mass)
+            event_out += "P %d %d %.4g %.4g %.4g %.4g %.4g 0 1 0 0 0 0\n"%(barcode, p.pdg_id, p.momentum.px, p.momentum.py, p.momentum.pz, p.momentum.e, calc_mass)
             barcode += 1
 
         # write to file
